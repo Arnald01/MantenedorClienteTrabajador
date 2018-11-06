@@ -1,0 +1,149 @@
+<!--
+  Generated template for the ModiClientePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>ModiCliente</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="fondo">
+    <form [formGroup]="todo" (ngSubmit)="Update(todo)">   
+     
+      
+       <!--SEXO-->
+          <!--SEXO CHECKBOX--> 
+          <ion-grid>
+              <ion-row>
+                  <ion-col >
+                       <ion-item >      
+                          <ion-label>Masculino</ion-label>
+                          <ion-checkbox id="masculino" formControlName="mas"></ion-checkbox>
+                        </ion-item>
+                  </ion-col>  
+                  <ion-col>
+                        <ion-item >
+                          <ion-label>Femenino</ion-label>
+                          <ion-checkbox id="fem" formControlName="fem"></ion-checkbox>
+                        </ion-item>          
+                  </ion-col>
+                  <ion-col>
+                      <ion-item >
+                        <ion-label>Otre</ion-label>
+                        <ion-checkbox id="otro" formControlName="otro"></ion-checkbox>
+                      </ion-item>          
+                </ion-col> 
+                </ion-row> 
+              </ion-grid>          
+            <!--FIN SEXO CHECKBOX------------------------>
+        <!--NOMBRE--> 
+        <!--CORREO ELECTRONICO--> 
+       <ion-item>
+         <ion-label floating >Correo</ion-label>
+         <ion-input type="email" formControlName="correo"  name ="correo" id="correo" ></ion-input>
+       </ion-item>
+           <!--VALIDACION-->
+           <ion-item *ngIf="todo.get('correo').errors && todo.get('correo').dirty"> 
+             <p color="danger" ion-text *ngIf="todo.get('correo').hasError('required')" >
+               Campo requerido!
+             </p>
+             <p color="danger" ion-text *ngIf="todo.get('correo').hasError('email') && !todo.get('correo').hasError('required')">
+               Correo no valido..
+             </p>
+             <p color="danger" ion-text *ngIf="todo.get('correo').hasError('emailUnico') && !todo.get('correo').hasError('required')">
+               Este correo ya existe!
+             </p>
+           </ion-item>
+        <!--NOMBRE--> 
+       <ion-item>
+           <ion-label floating>Nombre</ion-label>
+           <ion-input type="text"  name="nombre" formControlName="nombre" id="nombre"></ion-input>
+       </ion-item>
+       <!--VALIDACION-->
+       <ion-item *ngIf="todo.get('nombre').errors && todo.get('nombre').dirty"> 
+           <p color="danger" ion-text *ngIf="todo.get('nombre').hasError('required')" >
+             Campo requerido!
+           </p>
+           <p color="danger" ion-text *ngIf="todo.get('nombre').hasError('maxlength')">
+             Maximo 30 caracteres!..
+           </p>
+           <p color="danger" ion-text *ngIf="todo.get('nombre').hasError('pattern') && !todo.get('nombre').hasError(required)">
+            Ingrese solo caracteres..!
+          </p>
+         </ion-item>
+       <!--APELLIDO-->
+       <ion-item>
+           <ion-label floating>Apellido</ion-label>
+           <ion-input type="text" formControlName="apellido" name="apellido" id="apellido"></ion-input>
+       </ion-item>
+         <!--VALIDACION-->
+         <ion-item *ngIf="todo.get('apellido').errors && todo.get('apellido').dirty"> 
+             <p color="danger" ion-text *ngIf="todo.get('apellido').hasError('maxlength')">
+               Maximo 30 caracteres!..
+             </p>
+             <p color="danger" ion-text *ngIf="todo.get('apellido').hasError('pattern')">
+              Ingrese solo caracteres..!
+            </p>
+           </ion-item>
+       <!--NUMERO DE TELEFONO-->
+        <ion-item>
+         <ion-label floating>Numero de telefono</ion-label>
+         <ion-input type="text" formControlName="fono" name="fono" id="fono"></ion-input>
+       </ion-item> 
+         <!--VALIDACION-->
+         <ion-item *ngIf="todo.get('fono').errors && todo.get('fono').dirty"> 
+             <p color="danger" ion-text *ngIf="todo.get('fono').hasError('pattern')">
+               Porfavor ingrese un numero sin caracteres
+             </p>
+             <p color="danger" ion-text *ngIf="todo.get('fono').hasError('minlength') && !todo.get('fono').hasError('pattern')" >
+                 ingrese minimo 8 digitos!
+             </p>
+             <p color="danger" ion-text *ngIf="todo.get('fono').hasError('maxlength') && !todo.get('fono').hasError('pattern')" >
+                 ingrese maximo 12 digitos sin espacios!
+             </p>
+           </ion-item>
+       <!--CONTRASENA-->
+       <ion-item>
+         <ion-label floating>Password</ion-label>
+         <ion-input type="Password" formControlName="contrasena" name="contrasena" id="contrasena" ></ion-input>
+       </ion-item>
+       <!--VALIDACION-->
+       <ion-item *ngIf="todo.get('contrasena').errors && todo.get('contrasena').dirty"> 
+           <p color="danger" ion-text *ngIf="todo.get('contrasena').hasError('required')">
+             Campo necesario!  
+           </p>
+           <p color="danger" ion-text *ngIf="todo.get('contrasena').hasError('pattern') && !todo.get('contrasena').hasError('requerid')">
+               La contraseña debe tener entre 7 a 18 caracteres sin espacios!
+          </p>
+         </ion-item>
+         <!--CONTRSEÑA 2-->
+        <ion-item>
+          <ion-label floating>Confirme la contraseña</ion-label>
+          <ion-input type="Password" formControlName="contrasena2" name="contrasena2" id="contrasena2" ></ion-input>
+        </ion-item>
+        <!--VALIDACION-->
+        <ion-item *ngIf="todo.get('contrasena2').errors && todo.get('contrasena2').dirty"> 
+            <p color="danger" ion-text *ngIf="todo.get('contrasena2').hasError('required')">
+              Campo necesario!  
+           </p>
+           <p color="danger" ion-text *ngIf="todo.get('contrasena2').hasError('pattern') && !todo.get('contrasena2').hasError('requerid')">
+            La contraseña debe tener entre 7 a 18 caracteres sin espacios!
+          </p>
+          <p color="danger" ion-text *ngIf="todo.get('contrasena2').hasError('verifpass') && !todo.get('contrasena2').hasError('pattern') && !todo.get('contrasena2').hasError('requerid')">
+            Las contraseñas no coinciden!..
+          </p>
+    
+          </ion-item>
+       <ion-item text-center>
+         <button ion-button color="danger" block type="submit" [disabled]="!todo.valid">Modificar</button>
+       </ion-item>
+      <!-- {{todo.valid}}
+       {{todo.status}} --> 
+     </form> 
+</ion-content>

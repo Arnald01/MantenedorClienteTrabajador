@@ -1,0 +1,204 @@
+<!--
+  Generated template for the MtrabajadoresPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="danger">
+    <ion-title>Gestion de Trabajadores</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding class="fondo">
+  <!--FORMULARIO-------------------------------------->
+  <form [formGroup]="todo" (ngSubmit)="Guardar(todo)"> 
+      <!--INICIO DE INPUTS DEL FORMULARIO-->
+        <!--TIPO CUENTA-->
+          <!--TIPO CUENTA CHECKBOX--> 
+          <ion-row>
+              <ion-col >
+                   <ion-item >      
+                      <ion-label>Recepcionista</ion-label>
+                      <ion-checkbox id="Recepcionista" formControlName="Recepcionista"></ion-checkbox>
+                    </ion-item>
+              </ion-col>  
+              <ion-col>
+                    <ion-item >
+                      <ion-label>Esteticista</ion-label>
+                      <ion-checkbox id="Esteticista" formControlName="Esteticista"></ion-checkbox>
+                    </ion-item>          
+              </ion-col> 
+            </ion-row>
+        <!--TIPO CUENTA CHECKBOX------------------------>
+        <!--RUT-->
+      <ion-item>
+          <ion-label floating >Rut</ion-label>
+          <ion-input type="text"  formControlName="rut" name = "rut" id="rut"></ion-input>
+       </ion-item>
+         <!--VALIDACION-->
+         <ion-item *ngIf="todo.get('rut').errors && todo.get('rut').dirty"> 
+            <p color="danger" ion-text *ngIf="todo.get('rut').hasError('required')" >
+              Campo requerido!
+            </p>
+            <p color="danger" ion-text *ngIf="todo.get('rut').hasError('pattern') && !todo.get('rut').hasError('required')" >
+              Ingrese solo Numeros!
+            </p>
+            <p color="danger" ion-text *ngIf="!todo.get('rut').hasError('VALIDARUT') && !todo.get('rut').hasError('required') && !todo.get('rut').hasError('valorUnico') && !todo.get('rut').hasError('pattern')">
+              Digito verificador Incorrecto!
+            </p>
+            <p color="danger" ion-text *ngIf="todo.get('rut').hasError('valorUnico') && !todo.get('rut').hasError('required')">
+                Ya existe este rut!
+            </p>
+          </ion-item>
+       <!--NOMBRE--> 
+       <!--CORREO ELECTRONICO--> 
+      <ion-item>
+        <ion-label floating >Correo</ion-label>
+        <ion-input type="email" formControlName="correo"  name ="correo" id="correo" ></ion-input>
+      </ion-item>
+          <!--VALIDACION-->
+          <ion-item *ngIf="todo.get('correo').errors && todo.get('correo').dirty"> 
+            <p color="danger" ion-text *ngIf="todo.get('correo').hasError('required')" >
+              Campo requerido!
+            </p>
+            <p color="danger" ion-text *ngIf="todo.get('correo').hasError('email') && !todo.get('correo').hasError('required')">
+              Correo no valido..
+            </p>
+          </ion-item>
+       <!--NOMBRE--> 
+      <ion-item>
+          <ion-label floating>Nombre</ion-label>
+          <ion-input type="text"  name="nombre" formControlName="nombre" id="nombre"></ion-input>
+      </ion-item>
+      <!--VALIDACION-->
+      <ion-item *ngIf="todo.get('nombre').errors && todo.get('nombre').dirty"> 
+          <p color="danger" ion-text *ngIf="todo.get('nombre').hasError('required')" >
+            Campo requerido!
+          </p>
+          <p color="danger" ion-text *ngIf="todo.get('nombre').hasError('pattern') && !todo.get('nombre').hasError(required)">
+            Ingrese solo caracteres..!
+          </p>
+          <p color="danger" ion-text *ngIf="todo.get('nombre').hasError('maxlength')">
+            Maximo 30 caracteres!..
+          </p>
+        </ion-item>
+      <!--APELLIDO-->
+      <ion-item>
+          <ion-label floating>Apellido</ion-label>
+          <ion-input type="text" formControlName="apellido" name="apellido" id="apellido"></ion-input>
+      </ion-item>
+        <!--VALIDACION-->
+        <ion-item *ngIf="todo.get('apellido').errors && todo.get('apellido').dirty"> 
+            <p color="danger" ion-text *ngIf="todo.get('apellido').hasError('maxlength')">
+              Maximo 30 caracteres!..
+            </p>
+            <p color="danger" ion-text *ngIf="todo.get('apellido').hasError('pattern')">
+              Ingrese solo caracteres..!
+            </p>
+          </ion-item>
+
+      <!--NUMERO DE TELEFONO-->
+       <ion-item>
+        <ion-label floating>Numero de telefono</ion-label>
+        <ion-input type="text" formControlName="fono" name="fono" id="fono"></ion-input>
+      </ion-item> 
+        <!--VALIDACION-->
+        <ion-item *ngIf="todo.get('fono').errors && todo.get('fono').dirty"> 
+            <p color="danger" ion-text *ngIf="todo.get('fono').hasError('pattern')">
+              Porfavor ingrese un numero sin caracteres
+            </p>
+            <p color="danger" ion-text *ngIf="todo.get('fono').hasError('minlength') && !todo.get('fono').hasError('pattern')" >
+                ingrese minimo 8 digitos!
+            </p>
+            <p color="danger" ion-text *ngIf="todo.get('fono').hasError('maxlength') && !todo.get('fono').hasError('pattern')" >
+                ingrese maximo 12 digitos sin espacios!
+            </p>
+          </ion-item>
+  
+      <!--DESCRIPCION-->
+      <ion-item>
+        <ion-label floating>Descripcion propia</ion-label>
+        <ion-textarea formControlName="Descripcion" name="Descripcion" id="Descripcion" ></ion-textarea>
+      </ion-item>
+      <!--CONTRASENA-->
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="Password" formControlName="contrasena" name="contrasena" id="contrasena" ></ion-input>
+      </ion-item>
+      <!--VALIDACION-->
+      <ion-item *ngIf="todo.get('contrasena').errors && todo.get('contrasena').dirty"> 
+          <p color="danger" ion-text *ngIf="todo.get('contrasena').hasError('required')">
+            Campo necesario!  
+          </p>
+          <p color="danger" ion-text *ngIf="todo.get('contrasena').hasError('pattern') && !todo.get('contrasena').hasError('requerid')">
+              La contraseña debe tener entre 7 a 18 caracteres sin espacios!
+         </p>
+  
+        </ion-item>
+        <!--CONTRSEÑA 2-->
+        <ion-item>
+          <ion-label floating>Confirme la contraseña</ion-label>
+          <ion-input type="Password" formControlName="contrasena2" name="contrasena2" id="contrasena2" ></ion-input>
+        </ion-item>
+        <!--VALIDACION-->
+        <ion-item *ngIf="todo.get('contrasena2').errors && todo.get('contrasena2').dirty"> 
+            <p color="danger" ion-text *ngIf="todo.get('contrasena2').hasError('required')">
+              Campo necesario!  
+           </p>
+           <p color="danger" ion-text *ngIf="todo.get('contrasena2').hasError('pattern') && !todo.get('contrasena2').hasError('requerid')">
+            La contraseña debe tener entre 7 a 18 caracteres sin espacios!
+          </p>
+          <p color="danger" ion-text *ngIf="todo.get('contrasena2').hasError('verifpass') && !todo.get('contrasena2').hasError('pattern') && !todo.get('contrasena2').hasError('requerid')">
+            Las contraseñas no coinciden!..
+          </p>
+    
+          </ion-item>
+      <ion-item text-center>
+        <button ion-button color="danger" type="submit" [disabled]="!todo.valid" >Agregar Trabajador</button>
+      </ion-item>
+     <!-- {{todo.valid}}
+      {{todo.status}} [disabled]="!todo.valid"-->
+    </form> 
+
+  <!--FIN FOMULARIOO----->
+ <ion-list>
+   <ion-item text-center>
+    <button ion-button color="danger" (click)="Listar()">
+      Listar Trabajadores
+    </button>
+  </ion-item>
+
+</ion-list>
+  <ion-list>
+      <ion-item-sliding *ngFor="let trabajador of trabajador"  #item >
+         
+        <a ion-item (click)="openModal(trabajador)">
+            <h2>Nombre      : {{trabajador.nombre}}</h2>        
+            <h2>Correo      : {{trabajador.correo}}</h2>
+            <h2 *ngIf="trabajador.tipo_cuenta=='E'">Cargo: Esteticista</h2>
+            <h2 *ngIf="trabajador.tipo_cuenta=='R'">Cargo: Recepcionista</h2>
+        </a>    
+          <ion-item-options side="right">
+                <button ion-button (click)="Modificar(trabajador)">Modificar</button>
+                <button ion-button color="danger" (click)="Eliminar(trabajador.correo)">Eliminar</button>
+          </ion-item-options>
+        
+      </ion-item-sliding>  
+    </ion-list>
+ 
+</ion-content>
+<!--
+  <h2>Rut         : {{trabajador.rut_trabajador}}</h2>
+            <h2>Nombre      : {{trabajador.nombre}}</h2>
+            <h2>Apellido    : {{trabajador.apellido}}</h2>
+            <h2>fono        : {{trabajador.fono}}</h2>
+            <h2>Descripcion : {{trabajador.descripcion_propia}}</h2>
+            <h2>Creacion    : {{trabajador.fecha_creacion}}</h2>
+            <h2>Correo      : {{trabajador.correo}}</h2>
+            <h2>Password    : {{trabajador.contrasena}}</h2>
+            <h2 *ngIf="trabajador.tipo_cuenta=='E'">Cargo: Esteticista</h2>
+<h2 *ngIf="trabajador.tipo_cuenta=='R'">Cargo: Recepcionista</h2>
+-->

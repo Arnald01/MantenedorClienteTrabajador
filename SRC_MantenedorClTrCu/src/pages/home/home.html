@@ -1,0 +1,36 @@
+<ion-header>
+    <ion-navbar color="danger">
+      <ion-title text-center>Gestion de Cuentas</ion-title>   
+    </ion-navbar>
+</ion-header>
+  
+
+<ion-content padding class="fondo">
+  <!--<ion-list>
+    <ion-item *ngFor="let usuario of usuarios">
+      <h2>{{usuario.correo}}</h2>
+      <h2>{{usuario.contrasena}}</h2>
+      <h2>{{usuario.tipo_cuenta}}</h2>
+    </ion-item>
+  </ion-list>
+  <button ion-button full (click)="CargarUsuarios()">Obtener todos los usuarios Usuarios</button>-->
+
+  <ion-card>
+      <ion-card-header text-center>
+        Opciones
+        <hr>
+      </ion-card-header>
+      <ion-list>
+        <ion-item>        
+        <button ion-item (click)="PaginaTrabajadores()">
+            Cuentas de trabajadores
+        </button>
+      </ion-item>
+     <ion-item>
+        <button ion-item (click)="PaginaClientes()">
+            Cuentas de cliente
+        </button>
+      </ion-item> 
+      </ion-list>
+  </ion-card>
+</ion-content>
